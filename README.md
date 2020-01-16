@@ -4,6 +4,8 @@ Tic tac toe/naughts-and-crosses AI in brainfuck
 
 To play, type a number between 1 and 9 to place an X there.
 
+You can find a Live demo [here](https://abdalmoniem.github.io/TicTacToe_Brainfuck/).
+
 I wanted to just release the minimized version and remain mysterious, but it's
 quite long with a lot of repetition and some people might think that it was
 transcompiled from something else.
@@ -27,3 +29,5 @@ pointer in a fixed location, so in order to recover I frequently use things like
 
 which means, "head right until you reach a cell of value -1". This lets us put
 reference points in memory that we can always recover to.
+
+[This](https://abdalmoniem.github.io/TicTacToe_Brainfuck/brainfuck_interpreter.html) is the interpreter I used for developing this game.
