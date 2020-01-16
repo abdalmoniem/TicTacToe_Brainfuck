@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>brainfuck interpreter</title>
+</head>
+
+<body>
+    <style>
+        pre {
+            color: #bbb;
+        }
+        
+        span {
+            color: black
+        }
+        
+        span span {
+            color: red
+        }
+        
+        textarea {
+            font-family: monospace
+        }
+        
+        fieldset {
+            margin: 10px
+        }
+        
+        div {
+            text-align: center;
+        }
+    </style>
+    <textarea id="inp" style="position:fixed;left:-1000px"></textarea>
+    <div><h1>Brainfuck Debugger and Interpreter</h1></div>
+    <fieldset style="float:right">
+        <legend>Memory</legend><pre id="memory">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 </pre></fieldset>
+
+    <fieldset>
+        <legend>Code</legend>
+        <button onclick="run();">Run</button>
+        <button onclick="stop();">Stop</button>
+        Speed:
+        <input id="sp" type="range" min="1" max="500" oninput="speed=this.value*this.value;" style="width:300px">
+        <br>
+        <textarea id="t" style="width:100%;height:400px"></textarea>
+    </fieldset>
+    <fieldset>
+        <legend>Output</legend>
+        <textarea id="output" style="width:100%;height:200px"></textarea>
+    </fieldset>
+    <script>
+        t = document.getElementById('t');
+        memory = document.getElementById('memory');
+        inp = document.getElementById('inp');
+        output = document.getElementById('output');
+        document.onmouseup = function() {
+            if (window.timer) t.focus();
+        }
+        waiting = 0;
+
+        speed = 5000;
+
+        function stop() {
+            if (window.timer) {
+                clearTimeout(timer), timer = null;
+                waiting = 0;
+            }
+        }
+
+        function run() {
+            stop();
+            document.getElementById('sp').oninput();
+            Prog = t.value.split('');
+            Prog[Prog.length] = -1;
+            Tape = new Uint8Array(32768);
+            waiting = 0;
+            waitd = 0;
+            PP = TP = 0;
+            output.value = "";
+            t.focus();
+            main();
+        }
+
+        function main() {
+            var loop = Math.round(speed);
+            while (loop-- && !waiting && Prog[PP] != -1)
+                switch (Prog[PP++]) {
+                    case "+":
+                        Tape[TP]++;
+                        break;
+                    case "-":
+                        Tape[TP]--;
+                        break;
+                    case ">":
+                        TP++;
+                        break;
+                    case "<":
+                        TP--;
+                        break;
+                    case ".":
+                        puts(Tape[TP]);
+                        break;
+                    case ",":
+                        waiting = true;
+                        break;
+                    case "[":
+                        if (!Tape[TP]) {
+                            var depth = 1;
+                            while (depth) {
+                                if (Prog[PP] == "]") depth--;
+                                if (Prog[PP++] == "[") depth++
+                            }
+                        }
+                        break;
+                    case "]":
+                        if (Tape[TP]) {
+                            var depth = 1;
+                            PP--;
+                            while (depth) {
+                                if (Prog[--PP] == "[") depth--;
+                                if (Prog[PP] == "]") depth++
+                            }
+                        }
+                        break;
+                }
+            debug();
+            if (Prog[PP] != -1) timer = setTimeout(main, speed < 1 ? 1000 : waiting ? 200 : 1)
+        }
+
+        function debug() {
+            if (waiting) {
+                if (waitd == PP) return;
+                waitd = PP;
+            } else waitd = 0;
+            var i, x = "";
+            for (i = 0; i < 512; i++) {
+                if (TP == i) x += "<span style='color:red'>";
+                if (Tape[i] == 0) x += "00 ";
+                else x += "<span>" + ("0" + Tape[i].toString(16).toUpperCase()).slice(-2) + "</span> ";
+                if (TP == i) x += "</span>";
+                if ((i + 1) % 16 == 0) x += "\n";
+            }
+            memory.innerHTML = x;
+            t.selectionStart = (PP - 1)
+            t.selectionEnd = (PP);
+        };
+
+        function puts(x) {
+            output.value += String.fromCharCode(x);
+            output.scrollTop = output.scrollHeight;
+        }
+        document.onkeydown = function(e) {
+            if (waiting) inp.value = "", inp.focus()
+        }
+        inp.oninput = function() {
+            if (waiting) {
+                puts(Tape[TP] = inp.value.charCodeAt(0)), waiting = 0;
+                t.focus();
+                debug();
+            }
+        }
+    </script>
+</body>
+
+</html>

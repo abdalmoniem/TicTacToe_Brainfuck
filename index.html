@@ -52,10 +52,15 @@
 
 <body>
     <div id="mxmain">
+
+        
         <h1>BF Tic Tac Toe</h1>
         <h3>AbdAlMoniem AlHifnawy</h3>
         <h4>12 Jan 2020</h4>
-        <pre id="t">    +&gt;-[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;++[-]-&gt;&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;    
+
+        <div style="width: 100%; overflow: hidden;">
+            <div style="width: 600px; float: left;">
+                <pre id="t">    +&gt;-[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;++[-]-&gt;&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;    
  &gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;++[-&lt;+]-&lt;&lt;&lt;&lt;+&lt;&lt;++++[-&gt;++++++++&lt;]&lt;++[------&gt;+&lt;]&gt;++&lt;&lt;+[---&gt;++&lt;]&gt;++ 
 &lt;&lt;-[---&gt;+&lt;]&gt;------&lt;+[-&lt;+]-&lt;[&gt;&gt;+[-&gt;+]-&lt;[-]&lt;&lt;[-]+++[&gt;[-]++++++++++.[-]+++[&gt;+[&gt;&gt;+&lt;&lt;
 -]&gt;&gt;[&lt;&lt;++[-&lt;+]-&gt;++[-&gt;+]-&gt;-]&lt;&lt;+[-&lt;+]-&gt;-[-[-[-[-[-[-[-[-&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;
@@ -141,14 +146,18 @@
 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;
  &gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&lt;[-]]++[-&gt;+]-&gt;]+[-&lt;+]-&lt;+[ 
     -&lt;+]-&lt;]&gt;&gt;+[-&gt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;+[-[-]&lt;+]-&lt;+[-[-]&lt;+]-&lt;+&gt;]    
-</pre>
-        <h3>Demo</h3>
-        <pre id="output" style="width:100%;height:300px;overflow-y:scroll;padding-left:14px;background:#f0f0f0">
-
+        </pre>
+    </div>
+            <div style="margin-left: 620px;"><h3>Demo</h3>
+                <pre id="output" style="width:100%;height:300px;overflow-y:scroll;padding-left:14px;background:#f0f0f0">
 - - - 
 - - - 
 - - - 
- </pre>
+                </pre>
+                The interpreter I used to make the game: <a href="brainfuck_interpreter.html" target="_blank">Brainfuck Debugger and Interpreter</a>
+            </div>
+        </div>        
+        
         <script>
             waiting = 0;
             output = document.getElementById('output');
