@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="functions.js"></script>
+    <script>
+        document.write("<style>img[onload]{opacity:0;transition:opacity 2s}</style>");
+    </script>
+    <style>
+        img[onload] {
+            opacity: 0;
+            transition: opacity 2s
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>BF Tic Tac Toe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Naughts and Crosses AI in Brainfuck">
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            margin: 10px 0px 0px 0px;
+        }
+        
+        iframe {
+            display: block;
+            border: 0;
+            margin: auto
+        }
+        
+        #mxmain {
+            width: 80%;
+            margin: auto
+        }
+        
+        @media(max-width:1024px) {
+            #mxmain {
+                width: 90%
+            }
+            img,
+            canvas {
+                max-width: 100%
+            }
+            iframe {
+                max-width: 90vw;
+                max-height: 50.625vw
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mxmain">
+        <h1>BF Tic Tac Toe</h1>
+        <h3>AbdAlMoniem AlHifnawy</h3>
+        <h4>12 Jan 2020</h4>
+        <pre id="t">    +&gt;-[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;++[-]-&gt;&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;    
+ &gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;+&gt;&gt;&gt;++[-&lt;+]-&lt;&lt;&lt;&lt;+&lt;&lt;++++[-&gt;++++++++&lt;]&lt;++[------&gt;+&lt;]&gt;++&lt;&lt;+[---&gt;++&lt;]&gt;++ 
+&lt;&lt;-[---&gt;+&lt;]&gt;------&lt;+[-&lt;+]-&lt;[&gt;&gt;+[-&gt;+]-&lt;[-]&lt;&lt;[-]+++[&gt;[-]++++++++++.[-]+++[&gt;+[&gt;&gt;+&lt;&lt;
+-]&gt;&gt;[&lt;&lt;++[-&lt;+]-&gt;++[-&gt;+]-&gt;-]&lt;&lt;+[-&lt;+]-&gt;-[-[-[-[-[-[-[-[-&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;
+&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;.&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;]&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;                                            &lt;&lt;&lt;.&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;]&gt;[+[-
+&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;.&gt;&gt;&gt;                  tic tac toe                   &gt;&gt;&gt;&gt;&gt;&gt;]+[-&lt;+]-&lt;&lt;
+&lt;&lt;&lt;.&gt;&gt;&gt;-]&lt;-]+++       to play: type a number (1 to 9) to         +++++++.[-]&lt;&lt;&lt;&lt;
+&lt;&lt;[&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;+        place an X at that grid location          [---&gt;++&lt;]&gt;+++.[
+-&gt;+++++++&lt;]&gt;.++                                                  ++++.-[----&gt;+&lt;]
+&gt;+++.---[-&gt;+++&lt;]           [  AbdAlMoniem AlHifnawy  ]            &gt;.+++[-&gt;++++&lt;]&gt;+
+.+++++.-[-&gt;+++++&lt;]                                            &gt;.[---&gt;+&lt;]&gt;-.+[-&lt;+
+]-&lt;[-]&gt;&gt;&gt;&gt;]&lt;[&lt;&lt;&lt;&lt;&lt;&lt;&lt;++++[++++&gt;---&lt;]&gt;+.[++++&gt;---&lt;]&gt;-.+++[-&gt;+++&lt;]&gt;++.+[---&gt;+&lt;]&gt;+.+
+[----&gt;+&lt;]&gt;+++.[---&gt;+&lt;]&gt;-.[-]+[-&lt;+]-&lt;[-]&gt;&gt;&gt;&gt;]&lt;[&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;+[---&gt;++&lt;]&gt;+++.[-&gt;++++++
++&lt;]&gt;.++++++.-[----&gt;+&lt;]&gt;+++.++++++[-&gt;++&lt;]&gt;.+[---&gt;+&lt;]&gt;.++++.++++[-&gt;+++&lt;]&gt;.--[---&gt;+
+&lt;]&gt;.[---&gt;+&lt;]&gt;-.+[-&lt;+]-&lt;[-]&gt;&gt;&gt;&gt;]&lt;+[-&lt;+]-&lt;[&gt;&gt;-&gt;&gt;&gt;&gt;&gt;&gt;+[-&lt;&lt;&lt;&lt;[-]&lt;&lt;[-]&gt;&gt;&gt;&gt;-[&gt;&gt;[-]+&lt;&lt;+
+&lt;[-]&lt;[-]&lt;[-]&lt;[-]-[-----&gt;+&lt;]&gt;---&lt;,&gt;[-&lt;-&gt;]&lt;[&gt;&gt;+&gt;+&lt;&lt;&lt;-]&gt;&gt;[&lt;&lt;+&gt;&gt;-]+++++++++[-&gt;-[&lt;&lt;]&gt;
+]&gt;&gt;-]&lt;&lt;&lt;&lt;[-]&gt;&gt;&gt;&gt;[-]+&lt;&lt;&lt;&lt;&lt;&lt;[&gt;&gt;+&gt;+&lt;&lt;&lt;-]&gt;&gt;[&lt;&lt;+&gt;&gt;-]&gt;&gt;]&gt;&gt;-&lt;&lt;&lt;[-]&lt;&lt;[&lt;-&gt;-]&lt;-[-[-[-[-[-[
+-[-[-&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;[-&gt;++[-&lt;+]-&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;
+&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;&gt;&gt;[+[-
+&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]
+++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+
+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;
+&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;
+&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;-[++[-&gt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[
+-]++[-&gt;+]-&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]+[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]+
+[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]+[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;
++]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]+[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]+[-&gt;+]-&gt;]+[
+-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]+[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]+[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+&lt;&lt;&lt;[-]+[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]+[-&gt;+]-&gt;]
++[-&lt;+]-&lt;&lt;[-]&gt;[-]+&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;[&gt;&gt;[&gt;&gt;&gt;
+&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++[-&gt;+]-&gt;]]]&gt;
++[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;[&gt;&gt;[&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]
+-&lt;[-]&lt;[-]+++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++
+++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;[&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++++
+++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++[-&gt;+]
+-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;
+&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;
+[-]&lt;[-]+++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++
+++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++[-&gt;+]-&gt;]]]&gt;
++[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]
+-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;
+[-]++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++[-&gt;+]-
+&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;[&gt;[&gt;&gt;&gt;&gt;&gt;[+[-
+&lt;+]-&lt;[-]&lt;[-]+++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++[-&gt;+]-&gt;]]]&gt;+[-&lt;
++]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+[&gt;[&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;
+[-]&lt;[-]+++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++
+++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;[&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++
++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++[-&gt;+]
+-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;
+&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]
+-&lt;[-]&lt;[-]+++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-
+]++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++[-&gt;+]-&gt;
+]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++++[-&gt;+]-&gt;]]]&gt;+[
+-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;[+[-&lt;+
+]-&lt;[-]&lt;[-]++++++++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++
+++[-&gt;+]-&gt;]]]&gt;+[-&lt;+]-&lt;[&gt;&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++
++++++[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++++++[-&gt;+]-&gt;]+[-&lt;+]
+-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++++[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]++[-&gt;+]-&gt;]+[-&lt;
++]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++++++[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++++[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++++[
+-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]&lt;[-]+++[-&gt;+]-&gt;]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;
+[-]&lt;[-]++++++[-&gt;+]-&gt;]+[-&lt;+]-&gt;]&gt;&gt;+[-&lt;+]-&lt;&lt;&lt;&lt;[+[-&gt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;[-]
+&lt;[-]++[-&gt;+]-&gt;]+[-&lt;+]-&gt;]&gt;&gt;&gt;&gt;+[-&lt;+]-&lt;&lt;[&gt;&gt;&gt;+[-&lt;+]-&lt;[-]&lt;[+[-&lt;+]-&gt;++[-&gt;+]-&lt;&lt;-]+[-&lt;+]-
+&gt;-[-[-[-[-[-[-[-[-&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;-&gt;&gt;++[-&lt;+]-&gt;]&gt;&gt;&gt;&gt;+[-&lt;+]-&lt;&lt;[-]&gt;&gt;&gt;+[-&lt;+]-&lt;&lt;&lt;&lt;[-]&gt;&gt;&gt;&gt;&gt;+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;
+&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;[&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;
+]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;[
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;[&gt;
+ &gt;&gt;&gt;&gt;&gt;[&gt;&gt;&gt;&gt;&gt;&gt;[+[-&lt;+]-&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;[-]++[-&gt;+]-&gt;]]]+[-&lt;+]-&lt;[-]]++[-&gt;+]-&gt;]+[-&lt;+]-&lt;+[ 
+    -&lt;+]-&lt;]&gt;&gt;+[-&gt;+]-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;+[-[-]&lt;+]-&lt;+[-[-]&lt;+]-&lt;+&gt;]    
+</pre>
+        <h3>Demo</h3>
+        <pre id="output" style="width:100%;height:300px;overflow-y:scroll;padding-left:14px;background:#f0f0f0">
+
+- - - 
+- - - 
+- - - 
+ </pre>
+        <script>
+            waiting = 0;
+            output = document.getElementById('output');
+            out = "\n\n\n\n\n\n\n";
+            Prog = document.getElementById('t').innerHTML.replace(/&gt;/g, ">").replace(/&lt;/g, "<").split('');
+            Prog[Prog.length] = -1;
+            Tape = new Uint8Array(512); //won't even need that much
+            PP = TP = 0;
+
+            function main() {
+                var loop = 50000;
+                while (loop-- && !waiting && Prog[PP] != -1)
+                    switch (Prog[PP++]) {
+                        case "+":
+                            Tape[TP]++;
+                            break;
+                        case "-":
+                            Tape[TP]--;
+                            break;
+                        case ">":
+                            TP++;
+                            break;
+                        case "<":
+                            TP--;
+                            break;
+                        case ".":
+                            puts(Tape[TP]);
+                            break;
+                        case ",":
+                            waiting = true;
+                            break;
+                        case "[":
+                            if (!Tape[TP]) {
+                                var depth = 1;
+                                while (depth) {
+                                    if (Prog[PP] == "]") depth--;
+                                    if (Prog[PP++] == "[") depth++
+                                }
+                            }
+                            break;
+                        case "]":
+                            if (Tape[TP]) {
+                                var depth = 1;
+                                PP--;
+                                while (depth) {
+                                    if (Prog[--PP] == "[") depth--;
+                                    if (Prog[PP] == "]") depth++
+                                }
+                            }
+                            break;
+                    }
+                if (Prog[PP] != -1) setTimeout(main, waiting ? 100 : 1)
+            };
+
+            function puts(x) {
+                output.innerHTML = (out += String.fromCharCode(x)) + " ";
+                output.scrollTop = output.scrollHeight;
+            }
+
+            // Less annoying - don't swallow anything.
+            document.onkeypress = function(e) {
+                var x = e.which || e.keyCode;
+                if (waiting & x < 58 & x > 48) puts(Tape[TP] = x), waiting = 0;
+            }
+
+            main();
+        </script>
+        <br>
+        <br>
+    </div>
+    <div style="height:500px;clear:both; background:url(/img/paintloop1.png) repeat-x bottom;"></div>
+</body>
+
+</html>
